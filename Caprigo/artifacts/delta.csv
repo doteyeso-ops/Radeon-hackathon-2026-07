@@ -1,0 +1,3 @@
+timestamp,environment,gpu_type,model,completion_tokens,wall_s,tok_per_s,vram_pct,gpu_power_w,notes
+2026-08-04T17:22Z,ROCm,gfx1100,Qwen/Qwen2.5-0.5B-Instruct,128,0.595,215.04,87,94,vLLM 0.16 ROCm7.2.1 instance u-14549-080f238e
+2026-07-29,SCRAP,RX580_Vulkan,b_Radford-coder-3b-128k_or_7B_Q4_headline,,31,19,~64,,session_ok lean_tools; 7B@32k ~19 tok/s lived proof
