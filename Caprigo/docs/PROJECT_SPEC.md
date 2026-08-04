@@ -73,36 +73,33 @@ Lived proof writeup + CSVs: https://github.com/doteyeso-ops/rx580-vulkan-agents
 
 ## 5. AMD Radeon GPU / inference-speed optimization (Track 2 · 40%)
 
-### Already measured (baseline)
+### Measured (2026-08-04 · instance destroyed after capture)
 
 | Workload | Hardware | Result |
 |----------|----------|--------|
-| TokMark / Ollama decode | RX 580 Vulkan | 3B–7B Q4 ~15–24 t/s; 7B@32k ~19 t/s |
-| Caprigo Session (lean) | RX 580 | ~31s ok path (`bench-agent-delta.csv`) |
-| llama-bench OC notes | PL20/mem2100 | pp uplift; tg mostly mem-bound |
+| TokMark / Ollama decode | RX 580 Vulkan | 3B–7B Q4 ~15–24 t/s; 7B@32k ~**19** t/s |
+| Caprigo Session (lean) | RX 580 | ~**31 s** ok (`bench-agent-delta.csv`) |
+| **vLLM chat decode** | **gfx1100 · ROCm 7.2.1 · Qwen2.5-7B-Instruct** | **29.21 tok/s** (128 tok / 4.382 s) · **~1.5×** vs scrap 7B |
+| Path smoke | same instance · 0.5B Instruct | 215 tok/s |
+
+Full table + CSV: [`AMD.md`](AMD.md) · [`../artifacts/delta.csv`](../artifacts/delta.csv)
 
 ### Optimization levers shipping with Caprigo
 
-1. **Lean tool schemas** — fewer tokens in system prompt → more room for reasoning / tools on small VRAM.
-2. **Backend swap** — point gateway at ROCm endpoint without rewriting agent code.
-3. **Repeatable harness** — `bench_agent_delta.ps1` labels scrap vs `rocm-radeon` / `lemonade-halo`.
-
-### Pending with Radeon Cloud credits (this fork)
-
-- Re-run identical Session workload on contest Radeon GPU.
-- Publish before/after table in Caprigo `docs/AMD.md` + rx580 pack.
-- Goal for judges: **measured** scrap→ROCm delta, not vibes.
+1. **Lean tool schemas** (`CAPRIGO_LEAN_TOOLS=1`) — ~170 → ~17 schemas on 8GB scrap.
+2. **Backend swap** — OpenAI-compatible URL → Ollama or ROCm vLLM without rewriting agents.
+3. **Repeatable harness** — scrap Session CSV + cloud timed `/v1/chat/completions`.
 
 ---
 
 ## 6. Demo video
 
 - **URL:** https://github.com/doteyeso-ops/caprigo/blob/main/docs/demo/Caprigo_AMD_Demo.mp4  
-- Shows Caprigo operator surfaces + AMD/RX580 narrative (VO).  
-- Longer 3–5 min cut can be added after ROCm cloud run if judges prefer wall-clock length; core product path is already recorded.
+- Caprigo operator surfaces + AMD/RX580 narrative (VO).  
+- Length **~72s** (contest recommends 3–5 min; core path recorded).
 
 ---
 
 ## 7. Supplementary
 
-See [POSTER.md](POSTER.md).
+See [POSTER.md](POSTER.md) · checklist [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md).

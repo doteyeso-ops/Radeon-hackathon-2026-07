@@ -1,42 +1,27 @@
 # Caprigo — Winning Narrative (Judge Quick-Read)
 
-**Why this entry wins Track 2.**
+Track 2 rewards agentic product + **AMD Radeon/ROCm optimization (40%)**. Caprigo is a real local agent runtime (Session / Board / tools / MCP), not a bench-only demo, with a measured scrap→supported decode delta.
 
-The Track 2 rubric rewards: application scenarios, agent architecture, core capabilities, model/deployment plan, optimization for AMD Radeon GPU inference speed (40%), demo video, reproducibility README.
+## The 40% lever
 
-Caprigo delivers on every line with evidence, not promises.
+| Scrap (unsupported Polaris) | Supported (contest Radeon Cloud) |
+|-----------------------------|----------------------------------|
+| RX 580 · Ollama · Vulkan · 7B Q4 ~**19** tok/s | gfx1100 · vLLM ROCm 7.2.1 · Qwen2.5-7B-Instruct **29.21** tok/s (~**1.5×**) |
 
----
+Agent-side optimization: `CAPRIGO_LEAN_TOOLS=1` cuts ~170 → ~17 tool schemas so 8GB scrap can run agents; same flag on ROCm.
 
-## The 40% lever (why it wins)
+## Packet
 
-Most Track 2 entries optimize by choosing a smaller model or tweaking a hyperparameter. Caprigo optimizes the **agent loop itself**: `CAPRIGO_LEAN_TOOLS=1` cuts the system prompt from ~170 tool schemas to ~17. This is measurable: on 8 GB VRAM it determines whether the agent completes a session or hits a context limit. On supported Radeon hardware it unlocks stable 32k-context agent loops that unsupported Polaris cards cannot sustain.
+- Spec: `docs/PROJECT_SPEC.md`
+- Delta: `docs/AMD.md` + `artifacts/delta.csv`
+- Source: https://github.com/doteyeso-ops/caprigo
+- Demo: Caprigo demo MP4 (~72s)
+- Poster: `docs/POSTER.md`
 
-The harness proves this: same `bench_agent_delta.ps1` workload on scrap (RX 580 / Vulkan) and target (Radeon + ROCm). The judge sees a real delta number, not a vibes claim.
+## Honest notes
 
----
+- Demo shorter than the 3–5 min recommendation.
+- Cloud instance destroyed after measurement (results retained in repo).
+- Caprigo Session scrap ~31s measured; ROCm Session wall-clock not re-run — decode tok/s is the published cloud delta.
 
-## Competition comparison (why Caprigo > PR #9 "Tiny Tim" for this track)
-
-| Dimension | PR #9 Tiny Tim | Caprigo |
-|---|---|---|
-| Track focus | Trainable Go-native transformer | Agent runtime (tools, session, board) |
-| Measured delta | Training loss (5.56 → 0.87) | Agent session latency + tok/s (before/after) |
-| ROCm evidence | `gfx1100` benchmark numbers | Planned (instance ready; blocked by temporary maintenance) |
-| Reproducibility | `amdtest`, `amdbench`, `amdtrain`, `amdchat` | `run_rocm_delta.sh` + same harness |
-| Video | YouTube unlisted | Upstream video + supplementary ROCm clip planned |
-| Innovation | Custom HIP kernels | Lean-tool architecture, permission hardening, trace replay |
-
-Both are strong; Caprigo addresses a different but equally valid Track 2 interpretation: the agent runtime, not just the model layer.
-
----
-
-## Honest disclosure (judge trust)
-
-- No fabricated ROCm results. `docs/AMD.md` explicitly labels them `*pending instance launch*`.
-- The upstream demo video is the current visual evidence; a supplementary ROCm-run clip will be added once the cloud instance is live.
-- The SSH key (`caprigo_radeon.pub`) is ready; the instance template (`CaprigoAI Harness Test`) is saved; only maintenance blocks execution.
-
----
-
-— b_Radford · `doteyeso@gmail.com` · Deadline: Aug 6, 2026 8:59 AM PDT
+— b_Radford · `doteyeso@gmail.com`

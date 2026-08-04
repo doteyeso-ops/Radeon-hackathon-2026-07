@@ -4,58 +4,48 @@
 |-|-|
 | **Track** | 2 — Agentic AI |
 | **Team** | Vibes-Coded (solo) |
-| **Credit** | **b_Radford** · Brad Armstrong |
-| **App** | Caprigo |
-| **License** | MIT |
+| **Credit** | **b_Radford** · Brad Armstrong · `doteyeso@gmail.com` |
+| **App** | Caprigo (MIT) |
+| **PR title** | `Track 2, Vibes-Coded, Caprigo` |
 | **Deadline** | Aug 6, 2026 8:59 AM PDT |
 
-Local-first agent runtime (Overview / Session / HUD Board) with tools, MCP, missions, and offline scripts. Scrap baseline runs on a PowerColor **RX 580** via **Ollama + Vulkan**. Same agent loops target **AMD Radeon + ROCm** (and Lemonade / Halo) for measured scrap→supported delta (**40% of Track 2 score**).
+Local-first agent runtime (Overview / Session / HUD Board) with tools, MCP, missions. Scrap baseline: **RX 580 · Ollama · Vulkan**. Supported path: **Radeon Cloud · ROCm · vLLM**. Measured scrap→ROCm decode delta addresses **40% of Track 2 scoring**.
 
-## Canonical source (complete code)
+## Headline measured delta
 
-**https://github.com/doteyeso-ops/caprigo**
+| | Scrap RX 580 Vulkan | ROCm gfx1100 vLLM |
+|--|---------------------|-------------------|
+| Model class | 7B Q4 | **Qwen2.5-7B-Instruct** |
+| Decode tok/s | **~19** | **29.21** |
+| Uplift | | **~1.5×** |
 
-- AMD notes: https://github.com/doteyeso-ops/caprigo/blob/main/docs/AMD.md  
-- Demo MP4 (~72s, VO): https://github.com/doteyeso-ops/caprigo/blob/main/docs/demo/Caprigo_AMD_Demo.mp4  
-- Product site: https://caprigoai.com/
+Details + CSV: [`docs/AMD.md`](docs/AMD.md) · [`artifacts/delta.csv`](artifacts/delta.csv)  
+Instance used for measurement destroyed after capture (credits preserved).
 
-## Lived proof baseline (Polaris scrap)
+## Track 2 packet map
 
-**https://github.com/doteyeso-ops/rx580-vulkan-agents**
+| Contest requirement | Location |
+|---------------------|----------|
+| Project specification | [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md) |
+| Complete source | **https://github.com/doteyeso-ops/caprigo** (MIT) — not vendored here |
+| Demo video | https://github.com/doteyeso-ops/caprigo/blob/main/docs/demo/Caprigo_AMD_Demo.mp4 (~72s VO; contest recommends 3–5 min) |
+| Supplementary poster | [`docs/POSTER.md`](docs/POSTER.md) |
+| Reproducibility | [`docs/REPRODUCTION_README.md`](docs/REPRODUCTION_README.md) |
+| Checklist | [`docs/SUBMISSION_CHECKLIST.md`](docs/SUBMISSION_CHECKLIST.md) |
+| Scrap lived proof | https://github.com/doteyeso-ops/rx580-vulkan-agents |
 
-| Metric | Result |
-|--------|--------|
-| Hardware | RX 580 8GB · Ryzen 5 2600 · Windows · Vulkan |
-| 3B–7B Q4 decode | ~15–24 tok/s |
-| 7B Q4 @ 32k ctx | ~19 tok/s · ~5.1 GB VRAM |
-| Caprigo Session (lean tools) | scrap ok ~31s on `b_Radford-coder-3b-128k` |
-
-Delta harness: [`bench_agent_delta.ps1`](https://github.com/doteyeso-ops/rx580-vulkan-agents/blob/main/scripts/bench_agent_delta.ps1) — fill **after** on Radeon Cloud / ROCm.
-
-## Submission packet (this folder)
-
-| File | Requirement |
-|------|-------------|
-| [docs/PROJECT_SPEC.md](docs/PROJECT_SPEC.md) | Track 2 project specification |
-| [docs/POSTER.md](docs/POSTER.md) | Supplementary one-pager |
-| This README | Source + demo + setup pointers |
-
-## Quick start (local AMD / Vulkan scrap)
+## Quick start (scrap / local)
 
 ```bash
-git clone https://github.com/doteyeso-ops/caprigo
-cd caprigo
-# see repo README for monorepo install
-# point gateway at Ollama (Vulkan) or OpenAI-compatible ROCm endpoint
+git clone https://github.com/doteyeso-ops/caprigo && cd caprigo
+# see upstream README for monorepo install
+export CAPRIGO_LEAN_TOOLS=1
 export CAPRIGO_LLM_PROVIDER=ollama
 export OLLAMA_URL=http://127.0.0.1:11434
-export CAPRIGO_LEAN_TOOLS=1
 ```
 
-Lean tools cut unrestricted agent tool dumps from ~170 → ~17 schemas — critical for 8GB / short-ctx local models.
+## Radeon Cloud / ROCm (reproduce delta)
 
-## Radeon Cloud / ROCm
+Follow contest [Radeon-Cloud-User Guide](../Radeon-Cloud-User%20Guide/README.md). Same AMD AI Developer Program email. Serve with vLLM, time `/v1/chat/completions` as in `docs/AMD.md`.
 
-Follow upstream [Radeon-Cloud-User Guide](../Radeon-Cloud-User%20Guide/README.md). Use the **same email** as AMD AI Developer Program. After access: run the same Session workload, record tok/s + latency in `docs/AMD.md` / delta CSV.
-
-— b_Radford / Vibes-Coded · `doteyeso@gmail.com` · GitHub `doteyeso-ops`
+— b_Radford / Vibes-Coded

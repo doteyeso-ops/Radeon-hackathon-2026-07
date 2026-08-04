@@ -2,7 +2,8 @@
 
 **Credit:** b_Radford · Vibes-Coded · [caprigoai.com](https://caprigoai.com)  
 **Track:** Track 2 — Agentic AI · Hackathon 2026-08  
-**Cloud:** Radeon Cloud · instance `u-14549-080f238e` · template `CaprigoAI Harness Test`
+**Cloud:** Radeon Cloud · measured on `u-14549-080f238e` · template `CaprigoAI Harness Test` · **instance destroyed after capture**
+
 
 ---
 
