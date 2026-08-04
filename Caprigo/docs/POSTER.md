@@ -11,10 +11,10 @@
 
 ## Numbers
 
-| Scrap RX 580 Vulkan | ROCm gfx1100 vLLM |
-|---------------------|-------------------|
-| 7B Q4 ~**19** tok/s | Qwen2.5-7B-Instruct **29.21** tok/s |
-| Session lean ~**31 s** | Decode delta published · method in `MEASUREMENT_LOG.md` |
+| Scrap RX 580 Vulkan (warm 7B, matched prompt) | ROCm gfx1100 vLLM |
+|-----------------------------------------------|-------------------|
+| **13.73** wall tok/s | **29.21** wall tok/s (**~2.1×**) |
+| Lived-proof 7B@32k ~19 (separate) | 0.5B smoke 215 tok/s |
 
 ## Product edge
 

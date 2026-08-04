@@ -6,7 +6,7 @@
 |-----------------------|-----|------------------|
 | Functional completeness & application value | 60 | Real agent runtime: Overview / Session / Board, tools, MCP, missions, permissions, lean-tool filter. Source: https://github.com/doteyeso-ops/caprigo · Spec: `PROJECT_SPEC.md` · Scrap agent answer: `artifacts/agent-demo-20260728.md` · Demo MP4 |
 | Scenario / UX (within functional) | — | Operator HUD for local private agents on AMD; not a chat wrapper |
-| **AMD Radeon GPU + ROCm optimization** | **40** | Scrap Polaris/Vulkan → contest gfx1100 ROCm/vLLM. **7B-class decode ~19 → 29.21 tok/s (~1.5×)**. `AMD.md` · `artifacts/delta.csv` · `MEASUREMENT_LOG.md` |
+| **AMD Radeon GPU + ROCm optimization** | **40** | Scrap Polaris/Vulkan → contest gfx1100 ROCm/vLLM. **Matched-prompt 7B: 13.73 → 29.21 tok/s (~2.1×)**. Lived-proof scrap 7B@32k ~19 still listed. `AMD.md` · `artifacts/delta.csv` · `MEASUREMENT_LOG.md` |
 | Lean-tool inference optimization | (within 40) | `CAPRIGO_LEAN_TOOLS=1` → ~17 schemas vs ~170 (`packages/agent/src/lean-skills.ts` upstream). Scrap Session ~31s with lean: `artifacts/bench-agent-delta.csv` |
 
 ## Why this beats “bench-only” entries
