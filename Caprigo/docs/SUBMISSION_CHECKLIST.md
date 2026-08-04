@@ -36,7 +36,7 @@
 - [x] `docs/PROJECT_SPEC.md` completed
 - [x] `docs/POSTER.md` completed
 - [x] `docs/AMD.md` updated with scrap baseline, harness description, pending table
-- [x] SSH key (`keys/caprigo_radeon.pub`) saved for future instance
+- [x] SSH key generated locally (not committed to PR)
 - [x] Template `CaprigoAI Harness Test` saved on portal (`ROCm vLLM-dev` + Notebook + SSH enabled)
 - [x] `scripts/run_rocm_delta.sh` harness script ready
 - [x] `docs/AMD.md` delta table ready to fill once instance is live
