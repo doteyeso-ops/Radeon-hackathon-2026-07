@@ -18,20 +18,22 @@ Primary user: solo builders and small teams who want an on-prem agent runtime th
 
 ## 2. Agent architecture
 
-```
-Operator UI (Overview / Session / Board)
-        │
-        ▼
-Caprigo Gateway  ──►  Agent runtime (tools, MCP, skills, lean-tool filter)
-        │
-        ▼
-OpenAI-compatible LLM backend
-  ├─ Today: Ollama + Vulkan (RX 580 scrap)
-  └─ Target: ROCm / vLLM / Lemonade on supported AMD Radeon
+```mermaid
+flowchart TD
+  UI[Overview / Session / Board]
+  GW[Caprigo Gateway]
+  AG[Agent runtime]
+  LT[Lean tool filter]
+  LLM[OpenAI-compatible backend]
+  UI --> GW --> AG
+  AG --> LT
+  AG --> LLM
+  LLM --> Ollama[Ollama + Vulkan scrap RX580]
+  LLM --> VLLM[vLLM + ROCm gfx1100]
 ```
 
 - Agents call tools (filesystem, shell, web, MCP, skills).
-- **`CAPRIGO_LEAN_TOOLS=1`:** unrestricted agents see ~17 core tools instead of ~170 duplicate schemas — reduces context blowups on 8GB cards.
+- **`CAPRIGO_LEAN_TOOLS=1`:** unrestricted agents see ~17 core tools instead of ~170 duplicate schemas — reduces context blowups on 8GB cards. Upstream: `packages/agent/src/lean-skills.ts`.
 - Full catalog remains available via skill assignment when needed.
 
 ---

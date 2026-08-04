@@ -39,6 +39,14 @@ export OLLAMA_URL=http://127.0.0.1:11434
 
 4. Compare to scrap 7B ~19 tok/s. Our captured result: **29.21 tok/s** (`artifacts/delta.csv`).
 
+Helper:
+
+```bash
+python3 measure_vllm_toks.py --model Qwen/Qwen2.5-7B-Instruct --out /tmp/out.txt
+# or from this packet:
+python3 Caprigo/scripts/measure_vllm_toks.py --model Qwen/Qwen2.5-7B-Instruct
+```
+
 Contest GPU guide: [Radeon-Cloud-User Guide](../../Radeon-Cloud-User%20Guide/README.md)
 
 ---

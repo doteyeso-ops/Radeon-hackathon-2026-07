@@ -15,7 +15,10 @@
 | 2 | Complete source + README (env, startup, deps) | Upstream Caprigo MIT repo + this packet README | **DONE** |
 | 3 | Demo video (recommended 3–5 min; show operation on AMD GPU) | Caprigo `docs/demo/Caprigo_AMD_Demo.mp4` (~72s VO, RX580/AMD narrative) | **DONE** (shorter than recommended) |
 | 4 | Supplementary PPT/Poster | [`POSTER.md`](POSTER.md) | **DONE** |
-| 5 | AMD optimization / measured delta (**40%**) | [`AMD.md`](AMD.md) + [`../artifacts/delta.csv`](../artifacts/delta.csv) · 7B **29.21** vs scrap **~19** tok/s | **DONE** |
+| 5 | AMD optimization / measured delta (**40%**) | [`AMD.md`](AMD.md) + [`MEASUREMENT_LOG.md`](MEASUREMENT_LOG.md) + [`../artifacts/delta.csv`](../artifacts/delta.csv) · 7B **29.21** vs scrap **~19** tok/s | **DONE** |
+| — | Judge entrypoint | [`JUDGING_SCORECARD.md`](JUDGING_SCORECARD.md) | **DONE** |
+| — | Demo walkthrough (mitigates short video) | [`DEMO_WALKTHROUGH.md`](DEMO_WALKTHROUGH.md) | **DONE** |
+| — | Scrap agent + Session evidence | [`../artifacts/agent-demo-20260728.md`](../artifacts/agent-demo-20260728.md) · [`../artifacts/bench-agent-delta.csv`](../artifacts/bench-agent-delta.csv) | **DONE** |
 
 English materials · PR title format: `Track 2, Vibes-Coded, Caprigo`.
 

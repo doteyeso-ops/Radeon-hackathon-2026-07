@@ -26,11 +26,14 @@ Instance used for measurement destroyed after capture (credits preserved).
 
 | Contest requirement | Location |
 |---------------------|----------|
+| **Judge start (2 min)** | [`docs/JUDGING_SCORECARD.md`](docs/JUDGING_SCORECARD.md) |
 | Project specification | [`docs/PROJECT_SPEC.md`](docs/PROJECT_SPEC.md) |
-| Complete source | **https://github.com/doteyeso-ops/caprigo** (MIT) — not vendored here |
-| Demo video | https://github.com/doteyeso-ops/caprigo/blob/main/docs/demo/Caprigo_AMD_Demo.mp4 (~72s VO; contest recommends 3–5 min) |
+| Complete source | **https://github.com/doteyeso-ops/caprigo** (MIT) |
+| Demo video + walkthrough | [MP4](https://github.com/doteyeso-ops/caprigo/blob/main/docs/demo/Caprigo_AMD_Demo.mp4) · [`docs/DEMO_WALKTHROUGH.md`](docs/DEMO_WALKTHROUGH.md) |
 | Supplementary poster | [`docs/POSTER.md`](docs/POSTER.md) |
-| Reproducibility | [`docs/REPRODUCTION_README.md`](docs/REPRODUCTION_README.md) |
+| Measured AMD delta | [`docs/AMD.md`](docs/AMD.md) · [`docs/MEASUREMENT_LOG.md`](docs/MEASUREMENT_LOG.md) · [`artifacts/delta.csv`](artifacts/delta.csv) |
+| Scrap agent + Session CSV | [`artifacts/agent-demo-20260728.md`](artifacts/agent-demo-20260728.md) · [`artifacts/bench-agent-delta.csv`](artifacts/bench-agent-delta.csv) |
+| Reproducibility | [`docs/REPRODUCTION_README.md`](docs/REPRODUCTION_README.md) · [`scripts/measure_vllm_toks.py`](scripts/measure_vllm_toks.py) |
 | Checklist | [`docs/SUBMISSION_CHECKLIST.md`](docs/SUBMISSION_CHECKLIST.md) |
 | Scrap lived proof | https://github.com/doteyeso-ops/rx580-vulkan-agents |
 
